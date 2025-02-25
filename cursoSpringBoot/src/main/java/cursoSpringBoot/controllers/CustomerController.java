@@ -1,10 +1,12 @@
 package cursoSpringBoot.controllers;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import cursoSpringBoot.domain.Customer;
 
@@ -51,7 +53,14 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<?> postCliente(@RequestBody Customer customer) {
         customers.add(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Cliente creado exitosamente " + customer.getUsername());
+        URI location =ServletUriComponentsBuilder
+        .fromCurrentRequest()
+        .path("/{username}")
+        .buildAndExpand(customer.getUsername())
+        .toUri();
+
+        //return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(customer);
     }
 
     @PutMapping
