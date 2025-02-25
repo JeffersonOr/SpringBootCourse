@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cursoSpringBoot.domain.Customer;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,69 +33,70 @@ public class CustomerController {
     @GetMapping
     public ResponseEntity<List<Customer>> getCustomers() {
         return ResponseEntity.ok(customers);
-        //return customers;
+        // return customers;
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<?> getCliente(@PathVariable String username) {//el signo de ? indica que puede retornar cualquier tipo de dato
+    public ResponseEntity<?> getCliente(@PathVariable String username) {// el signo de ? indica que puede retornar
+                                                                        // cualquier tipo de dato
         for (Customer c : customers) {
             if (c.getUsername().equalsIgnoreCase(username)) {
                 return ResponseEntity.ok(c);
-                //return c;
+                // return c;
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con username: "+username);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con username: " + username);
     }
 
     @PostMapping
-    public ResponseEntity<?>postCliente(@RequestBody Customer customer) {
+    public ResponseEntity<?> postCliente(@RequestBody Customer customer) {
         customers.add(customer);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Cliente creado exitosamente "+customer.getUsername());
+        return ResponseEntity.status(HttpStatus.CREATED).body("Cliente creado exitosamente " + customer.getUsername());
     }
 
     @PutMapping
-    public Customer putClientes(@RequestBody Customer customer) {
+    public ResponseEntity<?> putClientes(@RequestBody Customer customer) {
         for (Customer c : customers) {
             if (c.getId() == customer.getId()) {
                 c.setName(customer.getName());
                 c.setUsername(customer.getUsername());
                 c.setPassword(customer.getPassword());
 
-                return c;
+                return ResponseEntity.ok("Cliente modificado exitosamente: " + customer.getUsername());
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: " + customer.getId());
     }
 
     @DeleteMapping("/{id}")
-    public Customer deleteCliente(@PathVariable int id) {
+    public ResponseEntity<?> deleteCliente(@PathVariable int id) {
         for (Customer c : customers) {
             if (c.getId() == id) {
                 customers.remove(c);
 
-                return c;
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Cliente elimando satisfactoriamente: "+id);
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: "+id);
     }
 
     @PatchMapping
-    public Customer patchCliente(@RequestBody Customer customer) {
+    public ResponseEntity<?> patchCliente(@RequestBody Customer customer) {
         for (Customer c : customers) {
-            if(c.getId()==customer.getId()){
-                if(customer.getName()!=null){
+            if (c.getId() == customer.getId()) {
+                if (customer.getName() != null) {
                     c.setName(customer.getName());
                 }
-                if(customer.getUsername()!=null){
+                if (customer.getUsername() != null) {
                     c.setUsername(customer.getUsername());
                 }
-                if(customer.getPassword()!=null){
+                if (customer.getPassword() != null) {
                     c.setPassword(customer.getPassword());
                 }
 
-                return c;
+                return ResponseEntity.ok("Cliente modificado satisfactoriamente: "+customer.getId());
             }
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado con id: "+customer.getId());
     }
 }
