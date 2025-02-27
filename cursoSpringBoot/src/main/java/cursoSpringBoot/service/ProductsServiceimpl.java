@@ -6,14 +6,20 @@ import java.util.List;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import cursoSpringBoot.domain.Product;
 
+@Lazy
 @Service //esto es un bean se servicio
 //@Service("listResourceService")
-@ConditionalOnProperty(name= "service.properties",havingValue = "list")
+@ConditionalOnProperty(name= "service.products",havingValue = "list")
 public class ProductsServiceimpl implements ProductService {
+    
+    public ProductsServiceimpl(){
+        System.out.println("Instancia de la clase ProductsServiceImpl");
+    }
 
     // all logic here
 
