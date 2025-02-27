@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "PC gamer",
+        "price": 999.99,
+        "stock": 9
+    },
+    {
+        "id": 2,
+        "name": "Bocina",
+        "price": 299.99,
+        "stock": 25
+    },
+    {
+        "id": 3,
+        "name": "Tv epico",
+        "price": 999.99,
+        "stock": 5
+    },
+    {
+        "id": 4,
+        "name": "Xbox",
+        "price": 599.99,
+        "stock": 8
+    }
+]

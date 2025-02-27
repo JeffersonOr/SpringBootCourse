@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import cursoSpringBoot.domain.Product;
 
+@Service //esto es un bean se servicio
 public class ProductsServiceimpl implements ProductService {
 
     // all logic here

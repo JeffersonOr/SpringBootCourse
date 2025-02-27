@@ -2,6 +2,7 @@ package cursoSpringBoot.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,12 @@ import cursoSpringBoot.service.ProductsServiceimpl;
 @RequestMapping("/products")
 public class ProductController {
 
-    ProductService productsService = new ProductsServiceimpl();
+    //instancia de clase
+    //ProductService productsService = new ProductsServiceimpl();
+
+    ////Inyeccion de dependencia
+    @Autowired
+    private ProductService productsService;
 
     @GetMapping
     public ResponseEntity<?> getProducts(){
