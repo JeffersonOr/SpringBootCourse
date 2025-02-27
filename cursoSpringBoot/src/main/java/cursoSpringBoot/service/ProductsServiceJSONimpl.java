@@ -12,7 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cursoSpringBoot.domain.Product;
 
 @Primary //Prioriza este bean
-@Service //bean --> se almacena en el contenedor de spring
+//@Service //bean --> se almacena en el contenedor de spring
+@Service("jsonResourceService")
 public class ProductsServiceJSONimpl implements ProductService {
 
     @Override

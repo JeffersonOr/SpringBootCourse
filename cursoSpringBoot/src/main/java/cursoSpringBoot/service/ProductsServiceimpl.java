@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 import cursoSpringBoot.domain.Product;
 
-@Service //esto es un bean se servicio
+//@Service //esto es un bean se servicio
+@Service("listResourceService")
 public class ProductsServiceimpl implements ProductService {
 
     // all logic here
