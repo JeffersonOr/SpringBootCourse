@@ -6,7 +6,7 @@ import java.util.List;
 
 import cursoSpringBoot.domain.Product;
 
-public class ProductsServiceimpl {
+public class ProductsServiceimpl implements ProductService {
 
     // all logic here
 
@@ -17,7 +17,9 @@ public class ProductsServiceimpl {
         new Product(4, "SmartWatch", 199.99, 30)
     ));
 
-    public List<Product> geProducts(){
+    @Override
+    public List<Product> getProducts(){
         return products;
     }
+
 }
