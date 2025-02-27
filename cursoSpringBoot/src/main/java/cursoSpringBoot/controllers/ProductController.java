@@ -22,7 +22,7 @@ public class ProductController {
 
     ////Inyeccion de dependencia
     @Autowired
-    @Qualifier("listResourceService")
+    //@Qualifier("listResourceService") //especificar el servicio a inyectar
     private ProductService productsService;
 
     @GetMapping

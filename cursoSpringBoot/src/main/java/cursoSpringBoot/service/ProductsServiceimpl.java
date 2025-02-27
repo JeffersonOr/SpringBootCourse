@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import cursoSpringBoot.domain.Product;
 
-//@Service //esto es un bean se servicio
-@Service("listResourceService")
+@Service //esto es un bean se servicio
+//@Service("listResourceService")
+@ConditionalOnProperty(name= "service.properties",havingValue = "list")
 public class ProductsServiceimpl implements ProductService {
 
     // all logic here

@@ -3,6 +3,8 @@ package cursoSpringBoot.service;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cursoSpringBoot.domain.Product;
 
 @Primary //Prioriza este bean
-//@Service //bean --> se almacena en el contenedor de spring
-@Service("jsonResourceService")
+@Service //bean --> se almacena en el contenedor de spring
+//@Service("jsonResourceService")
+@ConditionalOnProperty(name= "service.products",havingValue = "json")
 public class ProductsServiceJSONimpl implements ProductService {
 
     @Override
